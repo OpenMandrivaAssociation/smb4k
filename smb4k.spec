@@ -1,5 +1,5 @@
 %define name		smb4k
-%define version		0.8.0
+%define version		0.8.3
 
 
 %define lib_name_orig %mklibname smb4k
@@ -12,7 +12,7 @@
 Summary:	A KDE SMB share browser
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 3
+Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPL
 Packager:       Mandriva Linux KDE Team <kde@mandriva.com>
