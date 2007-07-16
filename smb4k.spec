@@ -1,10 +1,11 @@
 %define name		smb4k
-%define version		0.8.3
+%define version		0.8.4
 
 
 %define lib_name_orig %mklibname smb4k
 %define lib_major 0
 %define lib_name %lib_name_orig%lib_major
+%define develname %mklibname -d smb4k
 
 
 %define __libtoolize /bin/true
@@ -21,14 +22,14 @@ Url:		http://smb4k.berlios.de
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 Requires:	samba-client
 BuildRequires:  kdebase-devel
-BuildRequires:	autoconf2.5
+BuildRequires:	autoconf
 BuildRequires:  desktop-file-utils
 Requires:	%lib_name = %version-%release
 
 %description
 An SMB network and share browser for KDE 3.1 or later.
 
-%package -n %lib_name-devel
+%package -n %develname
 Summary:	Headers files for smb4k
 Group:		Development/KDE and Qt
 
@@ -36,8 +37,9 @@ Provides:	smb4k-devel = %version-%release
 
 Provides:	%lib_name_orig-devel = %version-%release
 Requires:       %lib_name = %version-%release
+Obsoletes:	%lib_name-devel
 
-%description -n %lib_name-devel
+%description -n %develname
 Headers files for smb4k.
 
 
@@ -85,7 +87,6 @@ rm -Rf %{buildroot}
 
 # Menu
 desktop-file-install --vendor="" \
-  --add-category="MandrivaLinux-Internet-FileTransfer" \
   --add-category="Network" \
   --add-category="FileTransfer" \
   --add-category="P2P" \
@@ -138,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/libsmb4kwidgets.so.*
 
 
-%files -n %lib_name-devel
+%files -n %develname
 %defattr(-,root,root,-)
 %_includedir/*.h
 %_libdir/libsmb4kcore.so
