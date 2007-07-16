@@ -16,7 +16,6 @@ Version:	%{version}
 Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPL
-Packager:       Mandriva Linux KDE Team <kde@mandriva.com>
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
 BuildRoot:	%{_tmppath}/%{name}-buildroot
