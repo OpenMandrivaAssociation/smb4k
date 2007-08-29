@@ -13,7 +13,7 @@
 Summary:	A KDE SMB share browser
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 1
+Release:	%mkrel 2
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPL
 Group:		Networking/Other
@@ -89,6 +89,7 @@ desktop-file-install --vendor="" \
   --add-category="Network" \
   --add-category="FileTransfer" \
   --add-category="P2P" \
+  --remove-category="Utility" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde $RPM_BUILD_ROOT%{_datadir}/applications/kde/*
 
 # Icons
