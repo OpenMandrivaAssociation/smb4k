@@ -1,5 +1,5 @@
 %define name		smb4k
-%define version		0.8.4
+%define version		0.8.5
 
 
 %define lib_name_orig %mklibname smb4k
@@ -13,7 +13,7 @@
 Summary:	A KDE SMB share browser
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 2
+Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPL
 Group:		Networking/Other
@@ -57,26 +57,11 @@ Lib files for smb4k.
 
 %build
 make -f admin/Makefile.common cvs
-
-export QTDIR=%_prefix/lib/qt3
-export KDEDIR=%_prefix
-
-export LD_LIBRARY_PATH=$QTDIR/%_lib:$KDEDIR/%_lib:$LD_LIBRARY_PATH
-export PATH=$QTDIR/bin:$KDEDIR/bin:$PATH
-
-
-%{?__cputoolize: %{__cputoolize} }
-
 %configure2_5x \
 		--disable-debug \
 		--enable-shared \
 		--disable-static \
-%if "%{_lib}" != "lib"
-    --enable-libsuffix="%(A=%{_lib}; echo ${A/lib/})" \
-%endif
 		--disable-rpath 
-		#--enable-final
-
 %make
 
 %install
@@ -127,7 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.png
 %_datadir/apps/konqsidebartng/add/smb4k_add.desktop
 
-
 %files -n %lib_name
 %defattr(-,root,root,-)
 %_libdir/kde3/konqsidebar_smb4k.la
@@ -144,5 +128,3 @@ rm -rf $RPM_BUILD_ROOT
 %_includedir/*.h
 %_libdir/libsmb4kcore.so
 %_libdir/libsmb4kwidgets.so
-
-
