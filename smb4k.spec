@@ -1,18 +1,10 @@
-%define name		smb4k
-%define version		0.8.5
-
-
-%define lib_name_orig %mklibname smb4k
-%define lib_major 0
-%define lib_name %lib_name_orig%lib_major
+%define major 1
+%define libname %mklibname %name %major
 %define develname %mklibname -d smb4k
 
-
-%define __libtoolize /bin/true
-
 Summary:	A KDE SMB share browser
-Name:		%{name}
-Version:	%{version}
+Name:		smb4k
+Version:	0.8.6
 Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPL
@@ -23,7 +15,8 @@ Requires:	samba-client
 BuildRequires:  kdebase-devel
 BuildRequires:	autoconf
 BuildRequires:  desktop-file-utils
-Requires:	%lib_name = %version-%release
+Conflicts:	%mklibname %name 0
+Requires:	%libname = %version-%release
 
 %description
 An SMB network and share browser for KDE 3.1 or later.
@@ -31,26 +24,20 @@ An SMB network and share browser for KDE 3.1 or later.
 %package -n %develname
 Summary:	Headers files for smb4k
 Group:		Development/KDE and Qt
-
 Provides:	smb4k-devel = %version-%release
-
-Provides:	%lib_name_orig-devel = %version-%release
-Requires:       %lib_name = %version-%release
-Obsoletes:	%lib_name-devel
+Requires:       %libname = %version-%release
+Conflicts:	%mklibname %name 0
 
 %description -n %develname
 Headers files for smb4k.
 
-
-%package -n %lib_name
+%package -n %libname
 Summary:	Lib files for smb4k
 Group:		Development/KDE and Qt
+Obsoletes:	%mklibname %{name} 0
 
-
-%description -n %lib_name
+%description -n %libname
 Lib files for smb4k.
-
-
 
 %prep
 %setup -q
@@ -96,13 +83,14 @@ perl -pi -e  "s,-L$RPM_BUILD_DIR\S+,,g" %{buildroot}/%{_libdir}/kde3/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n %{lib_name} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
-%postun -n %{lib_name} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%{_bindir}/%{name}*
+%{_bindir}/*
+%{_libdir}/kde3/*
 %{_datadir}/applications/kde/smb4k.desktop
 %{_datadir}/apps/smb4k
 %doc %_docdir/HTML/en/smb4k
@@ -112,19 +100,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.png
 %_datadir/apps/konqsidebartng/add/smb4k_add.desktop
 
-%files -n %lib_name
+%files -n %libname
 %defattr(-,root,root,-)
-%_libdir/kde3/konqsidebar_smb4k.la
-%_libdir/kde3/konqsidebar_smb4k.so
-
-%_libdir/libsmb4kcore.la
-%_libdir/libsmb4kcore.so.*
-%_libdir/libsmb4kwidgets.la
-%_libdir/libsmb4kwidgets.so.*
-
+%_libdir/libsmb4kcore.so.%{major}*
+%_libdir/libsmb4kwidgets.so.{major}*
 
 %files -n %develname
 %defattr(-,root,root,-)
 %_includedir/*.h
-%_libdir/libsmb4kcore.so
-%_libdir/libsmb4kwidgets.so
+%_libdir/*.so
+%_libdir/*.la
