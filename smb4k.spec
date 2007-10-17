@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %libname
 %defattr(-,root,root,-)
 %_libdir/libsmb4kcore.so.%{major}*
-%_libdir/libsmb4kwidgets.so.{major}*
+%_libdir/libsmb4kwidgets.so.%{major}*
 
 %files -n %develname
 %defattr(-,root,root,-)
