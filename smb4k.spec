@@ -4,10 +4,10 @@
 
 Summary:	A KDE SMB share browser
 Name:		smb4k
-Version:	0.8.6
+Version:	0.8.7
 Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-License:	GPL
+License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
 BuildRoot:	%{_tmppath}/%{name}-buildroot
