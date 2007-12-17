@@ -15,8 +15,12 @@ Requires:	samba-client
 BuildRequires:  kdebase-devel
 BuildRequires:	autoconf
 BuildRequires:  desktop-file-utils
-Conflicts:	%mklibname %name 0
-Obsoletes:	%libname
+Obsoletes:	%mklibname %name 0
+# fwang: I remove libname in 0.9.0-1, because:
+# 1) libname is only used by the application
+# 2) the application is mainly an end user application rather than
+#    a development library
+Obsoletes:	%mklibname %name 1
 
 %description
 An SMB network and share browser for KDE 3.1 or later.
@@ -25,7 +29,8 @@ An SMB network and share browser for KDE 3.1 or later.
 Summary:	Headers files for smb4k
 Group:		Development/KDE and Qt
 Requires:       %name = %version-%release
-Obsoletes:	%develname
+Obsoletes:	%mklibname -d %name 1
+Obsoletes:	%mklibname -d %name 0
 
 %description devel
 Headers files for smb4k.
