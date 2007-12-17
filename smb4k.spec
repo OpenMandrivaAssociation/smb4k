@@ -4,7 +4,7 @@
 
 Summary:	A KDE SMB share browser
 Name:		smb4k
-Version:	0.8.7
+Version:	0.9.0
 Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
@@ -16,28 +16,19 @@ BuildRequires:  kdebase-devel
 BuildRequires:	autoconf
 BuildRequires:  desktop-file-utils
 Conflicts:	%mklibname %name 0
-Requires:	%libname = %version-%release
+Obsoletes:	%libname
 
 %description
 An SMB network and share browser for KDE 3.1 or later.
 
-%package -n %develname
+%package devel
 Summary:	Headers files for smb4k
 Group:		Development/KDE and Qt
-Provides:	smb4k-devel = %version-%release
-Requires:       %libname = %version-%release
-Conflicts:	%mklibname %name 0
+Requires:       %name = %version-%release
+Obsoletes:	%develname
 
-%description -n %develname
+%description devel
 Headers files for smb4k.
-
-%package -n %libname
-Summary:	Lib files for smb4k
-Group:		Development/KDE and Qt
-Obsoletes:	%mklibname %{name} 0
-
-%description -n %libname
-Lib files for smb4k.
 
 %prep
 %setup -q
@@ -83,9 +74,9 @@ perl -pi -e  "s,-L$RPM_BUILD_DIR\S+,,g" %{buildroot}/%{_libdir}/kde3/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n %{libname} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun -n %{libname} -p /sbin/ldconfig
+%postun  -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(-,root,root)
@@ -93,19 +84,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/*
 %{_datadir}/applications/kde/smb4k.desktop
 %{_datadir}/apps/smb4k
+%{_datadir}/apps/*/*.rc
+%{_datadir}/config.kcfg/smb4k.kcfg
 %doc %_docdir/HTML/en/smb4k
 %{_iconsdir}/crystalsvg/*/apps/smb4k.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %_datadir/apps/konqsidebartng/add/smb4k_add.desktop
+%_libdir/*.so.*
 
-%files -n %libname
-%defattr(-,root,root,-)
-%_libdir/libsmb4kcore.so.%{major}*
-%_libdir/libsmb4kwidgets.so.%{major}*
-
-%files -n %develname
+%files devel
 %defattr(-,root,root,-)
 %_includedir/*.h
 %_libdir/*.so
