@@ -30,6 +30,7 @@ Group:		Development/KDE and Qt
 Requires:       %name = %version-%release
 Obsoletes:	%mklibname -d %name 1
 Obsoletes:	%mklibname -d %name 0
+Obsoletes:	%mklibname -d %name
 
 %description devel
 Headers files for smb4k.
