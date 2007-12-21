@@ -10,6 +10,7 @@ Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 Requires:	samba-client
 BuildRequires:  kdebase-devel
 BuildRequires:	autoconf
