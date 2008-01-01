@@ -5,7 +5,7 @@
 Summary:	A KDE SMB share browser
 Name:		smb4k
 Version:	0.9.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
 Group:		Networking/Other
@@ -21,7 +21,7 @@ Obsoletes:	%mklibname %name 0
 # 2) the application is mainly an end user application rather than
 #    a development library
 Obsoletes:	%mklibname %name 1
-Conflicts:	%name-devel < 0.9.0-2
+Conflicts:	%name-devel < 0.9.1-2
 
 %description
 An SMB network and share browser for KDE 3.1 or later.
@@ -100,6 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_miconsdir}/%{name}.png
 %_datadir/apps/konqsidebartng/add/smb4k_add.desktop
 %_libdir/libsmb4kdialogs.so
+%_libdir/libsmb4kdialogs.la
 %_libdir/libsmb4kconfigdialog.so.*
 %_libdir/libsmb4kcore.so.*
 
@@ -110,4 +111,3 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/libsmb4kconfigdialog.so
 %_libdir/libsmb4kcore.la
 %_libdir/libsmb4kcore.so
-%_libdir/libsmb4kdialogs.la
