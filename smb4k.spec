@@ -24,7 +24,7 @@ Obsoletes:	%mklibname %name 1
 Conflicts:	%name-devel < 0.9.1-2
 
 %description
-An SMB network and share browser for KDE 3.1 or later.
+An SMB network and share browser for KDE 3 or later.
 
 %package devel
 Summary:	Headers files for smb4k
