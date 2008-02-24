@@ -4,7 +4,7 @@
 
 Summary:	A KDE SMB share browser
 Name:		smb4k
-Version:	0.9.2
+Version:	0.9.3
 Release:	%mkrel 1
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 %{_libdir}/kde3/*
 %{_datadir}/applications/kde/smb4k.desktop
-%{_datadir}/apps/smb4k
+%dir %{_datadir}/apps/smb4k
 %{_datadir}/apps/*/*.rc
 %{_datadir}/config.kcfg/smb4k.kcfg
 %doc %_docdir/HTML/en/smb4k
