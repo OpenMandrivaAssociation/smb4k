@@ -101,13 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/apps/konqsidebartng/add/smb4k_add.desktop
 %_libdir/libsmb4kdialogs.so
 %_libdir/libsmb4kdialogs.la
-%_libdir/libsmb4kconfigdialog.so.*
-%_libdir/libsmb4kconfigdialog.la
 %_libdir/libsmb4kcore.so.*
 %_libdir/libsmb4kcore.la
 
 %files devel
 %defattr(-,root,root,-)
 %_includedir/*.h
-%_libdir/libsmb4kconfigdialog.so
 %_libdir/libsmb4kcore.so
