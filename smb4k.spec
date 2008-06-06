@@ -2,10 +2,10 @@
 %define libname %mklibname %name %major
 %define develname %mklibname -d smb4k
 
-Summary:	A KDE SMB share browser
 Name:		smb4k
 Version:	0.9.5
-Release:	%mkrel 1
+Release:	%mkrel 2
+Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
 Group:		Networking/Other
@@ -43,7 +43,7 @@ Headers files for smb4k.
 
 %build
 make -f admin/Makefile.common cvs
-%configure2_5x 
+%configure_kde3 
 %make
 
 %install
@@ -52,7 +52,7 @@ rm -Rf %{buildroot}
 %makeinstall_std
 
 # Fix KDE's absolute symlinks
-pushd $RPM_BUILD_ROOT%{_docdir}/HTML/en/smb4k/
+pushd $RPM_BUILD_ROOT%{_kde3_docdir}/HTML/en/smb4k/
 	ln -sf ../common
 popd
 
@@ -66,20 +66,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%{_bindir}/*
-%{_libdir}/kde3/*
-%{_datadir}/applications/kde/smb4k.desktop
-%dir %{_datadir}/apps/smb4k
-%{_datadir}/apps/*/*.rc
-%{_datadir}/config.kcfg/smb4k.kcfg
-%{_iconsdir}/crystalsvg/*/apps/smb4k.png
-%_datadir/apps/konqsidebartng/add/smb4k_add.desktop
-%_libdir/libsmb4kdialogs.so
-%_libdir/libsmb4kdialogs.la
-%_libdir/libsmb4kcore.so.*
-%_libdir/libsmb4kcore.la
+%{_kde3_bindir}/*
+%{_kde3_libdir}/kde3/*
+%{_kde3_datadir}/applications/kde/smb4k.desktop
+%dir %{_kde3_datadir}/apps/smb4k
+%{_kde3_datadir}/apps/*/*.rc
+%{_kde3_datadir}/config.kcfg/smb4k.kcfg
+%{_kde3_iconsdir}/crystalsvg/*/apps/smb4k.png
+%_kde3_datadir/apps/konqsidebartng/add/smb4k_add.desktop
+%_kde3_libdir/libsmb4kdialogs.so
+%_kde3_libdir/libsmb4kdialogs.la
+%_kde3_libdir/libsmb4kcore.so.*
+%_kde3_libdir/libsmb4kcore.la
 
 %files devel
 %defattr(-,root,root,-)
-%_includedir/*.h
-%_libdir/libsmb4kcore.so
+%_kde3_includedir/*.h
+%_kde3_libdir/libsmb4kcore.so
