@@ -61,8 +61,12 @@ popd
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun  -p /sbin/ldconfig
+%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root)
