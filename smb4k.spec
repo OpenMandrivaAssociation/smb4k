@@ -3,8 +3,8 @@
 %define develname %mklibname -d smb4k
 
 Name:		smb4k
-Version:	0.9.5
-Release:	%mkrel 2
+Version:	0.9.6
+Release:	%mkrel 1
 Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
