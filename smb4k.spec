@@ -1,21 +1,18 @@
-%define major 1
-%define libname %mklibname %name %major
-%define develname %mklibname -d smb4k
+%define betaver alpha
+%define tarballver %version%betaver
 
 Name:		smb4k
-Version:	0.9.6
-Release:	%mkrel 1
+Version:	0.10.0
+Release:	%mkrel -c %betaver 1
 Summary:	A KDE SMB share browser
-Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
+Source:		http://download.berlios.de/smb4k/%{name}-%{tarballver}.tar.bz2
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 Requires:	samba-client
-BuildRequires:  kde3-macros
-BuildRequires:  kdebase3-devel
+BuildRequires:  kdelibs4-devel
 BuildRequires:	autoconf
-BuildRequires:  desktop-file-utils
 Obsoletes:	%mklibname %name 0
 # fwang: I remove libname in 0.9.0-1, because:
 # 1) libname is only used by the application
@@ -25,65 +22,83 @@ Obsoletes:	%mklibname %name 1
 Conflicts:	%name-devel < 0.9.1-2
 
 %description
-An SMB network and share browser for KDE 3 or later.
+An SMB network and share browser for KDE 4 or later.
 
+%files -f %{name}.lang
+%defattr(-,root,root)
+%{_kde_bindir}/*
+%_kde_datadir/apps/kconf_update/*
+%{_kde_libdir}/kde4/*.so
+%{_kde_datadir}/applications/kde4/smb4k.desktop
+%dir %{_kde_datadir}/apps/smb4k
+%{_kde_datadir}/apps/*/*.rc
+%{_kde_datadir}/config.kcfg/smb4k.kcfg
+
+#------------------------------------------------	
+
+%define smb4kcore_major 3
+%define libsmb4kcore %mklibname smb4kcore %smb4kcore_major
+
+%package -n %libsmb4kcore
+Summary: SMB4K core library
+Group: System/Libraries
+
+%description -n %libsmb4kcore
+SMB4K core library.
+
+%files -n %libsmb4kcore
+%defattr(-,root,root)
+%_kde_libdir/libsmb4kcore.so.%{smb4kcore_major}*
+
+#------------------------------------------------	
+
+%define smb4kdialogs_major 2
+%define libsmb4kdialogs %mklibname smb4kdialogs %smb4kdialogs_major
+
+%package -n %libsmb4kdialogs
+Summary: SMB4K dialog library
+Group: System/Libraries
+
+%description -n %libsmb4kdialogs
+SMB4K dialog library.
+
+%files -n %libsmb4kdialogs
+%defattr(-,root,root)
+%_kde_libdir/libsmb4kdialogs.so.%{smb4kdialogs_major}*
+
+#------------------------------------------------
 %package devel
-Summary:	Headers files for smb4k
-Group:		Development/KDE and Qt
-Requires:       %name = %version-%release
-Obsoletes:	%mklibname -d %name 1
-Obsoletes:	%mklibname -d %name 0
-Obsoletes:	%mklibname -d %name
+Summary: Developemnt files for smb4k
+Group: Development/KDE and Qt
+Requires: %libsmb4kcore = %version-%release
+Requires: %libsmb4kdialogs = %version-%release
 
 %description devel
-Headers files for smb4k.
+Developemnt files for smb4k.
+
+%files devel
+%defattr(-,root,root)
+%_kde_libdir/*.so
+%_kde_includedir/*.h
+
+#------------------------------------------------
 
 %prep
-%setup -q
+%setup -q -n %name-%tarballver
 
 %build
-make -f admin/Makefile.common cvs
-%configure_kde3 
+%cmake_kde4
 %make
 
 %install
 rm -Rf %{buildroot}
-
+cd build
 %makeinstall_std
+cd -
 
-# Fix KDE's absolute symlinks
-pushd $RPM_BUILD_ROOT%{_kde3_docdir}/HTML/en/smb4k/
-	ln -sf ../common
-popd
+mv %buildroot%_kde_datadir/doc/HTML/en/en %buildroot%_kde_datadir/doc/HTML/en/smb4k
 
 %find_lang %{name} --with-html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%if %mdkversion < 200900
-%post -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun  -p /sbin/ldconfig
-%endif
-
-%files -f %{name}.lang
-%defattr(-,root,root)
-%{_kde3_bindir}/*
-%{_kde3_libdir}/kde3/*
-%{_kde3_datadir}/applications/kde/smb4k.desktop
-%dir %{_kde3_datadir}/apps/smb4k
-%{_kde3_datadir}/apps/*/*.rc
-%{_kde3_datadir}/config.kcfg/smb4k.kcfg
-%{_kde3_iconsdir}/crystalsvg/*/apps/smb4k.png
-%_kde3_datadir/apps/konqsidebartng/add/smb4k_add.desktop
-%_kde3_libdir/libsmb4kdialogs.so
-%_kde3_libdir/libsmb4kdialogs.la
-%_kde3_libdir/libsmb4kcore.so.*
-%_kde3_libdir/libsmb4kcore.la
-
-%files devel
-%defattr(-,root,root,-)
-%_kde3_includedir/*.h
-%_kde3_libdir/libsmb4kcore.so
