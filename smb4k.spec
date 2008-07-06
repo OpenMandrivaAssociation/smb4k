@@ -1,4 +1,4 @@
-%define betaver alpha
+%define betaver beta1
 %define tarballver %version%betaver
 
 Name:		smb4k
