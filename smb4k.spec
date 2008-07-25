@@ -1,4 +1,4 @@
-%define betaver beta1
+%define betaver beta2
 %define tarballver %version%betaver
 
 Name:		smb4k
@@ -12,7 +12,6 @@ Url:		http://smb4k.berlios.de
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 Requires:	samba-client
 BuildRequires:  kdelibs4-devel
-BuildRequires:	autoconf
 Obsoletes:	%mklibname %name 0
 # fwang: I remove libname in 0.9.0-1, because:
 # 1) libname is only used by the application
