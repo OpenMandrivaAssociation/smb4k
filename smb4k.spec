@@ -33,6 +33,7 @@ An SMB network and share browser for KDE 4 or later.
 %dir %{_kde_datadir}/apps/smb4k
 %{_kde_datadir}/apps/*/*.rc
 %{_kde_datadir}/config.kcfg/smb4k.kcfg
+%{_kde_iconsdir}/*/*/*/*
 
 #------------------------------------------------	
 
