@@ -6,6 +6,7 @@ Version:	0.10.0
 Release:	%mkrel -c %betaver 1
 Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{tarballver}.tar.bz2
+Patch0:		smb4k-0.10.0beta2-fix-doc-install.patch
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
@@ -84,6 +85,7 @@ Developemnt files for smb4k.
 
 %prep
 %setup -q -n %name-%tarballver
+%patch0 -p0
 
 %build
 %cmake_kde4
@@ -95,9 +97,7 @@ cd build
 %makeinstall_std
 cd -
 
-mv %buildroot%_kde_datadir/doc/HTML/en/en %buildroot%_kde_datadir/doc/HTML/en/smb4k
-
-%find_lang %{name} --with-html
+%find_lang %name --with-html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
