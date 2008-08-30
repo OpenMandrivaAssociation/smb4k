@@ -1,9 +1,9 @@
-%define betaver rc
+%define betaver %nil
 %define tarballver %version%betaver
 
 Name:		smb4k
 Version:	0.10.0
-Release:	%mkrel -c %betaver 1
+Release:	%mkrel  1
 Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{tarballver}.tar.bz2
 License:	GPLv2+
