@@ -1,5 +1,5 @@
 Name:		smb4k
-Version:	0.10.4
+Version:	0.10.5
 Release:	%mkrel 1
 Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
@@ -67,6 +67,7 @@ Developemnt files for smb4k.
 
 %prep
 %setup -q -n %name-%version
+rm -fr build
 
 %build
 %cmake_kde4
