@@ -1,8 +1,9 @@
 Name:		smb4k
 Version:	0.10.7
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
+Patch0:    smb4k-0.10.7-fix-i18n.patch
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
@@ -66,6 +67,8 @@ Developemnt files for smb4k.
 
 %prep
 %setup -q -n %name-%version
+%patch0 -p0
+
 cd po/pt
 mv pt.po %name.po
 
