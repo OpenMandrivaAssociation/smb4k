@@ -67,7 +67,7 @@ Developemnt files for smb4k.
 
 %prep
 %setup -q -n %name-%version
-%patch0 -p0
+#%patch0 -p0
 
 cd po/pt
 mv pt.po %name.po
