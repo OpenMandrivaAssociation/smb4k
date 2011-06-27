@@ -1,14 +1,15 @@
 Name:		smb4k
 Version:	0.10.10
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	A KDE SMB share browser
 Source:		http://download.berlios.de/smb4k/%{name}-%{version}.tar.bz2
-Patch0:    smb4k-0.10.7-fix-i18n.patch
+Patch1:		smb4k-0.10.10-sudo.patch
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.berlios.de
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 Requires:	samba-client
+Requires:	kdebase4-runtime
 BuildRequires:  kdelibs4-devel
 Obsoletes:	%mklibname %name 0
 # fwang: I remove libname in 0.9.0-1, because:
@@ -67,7 +68,7 @@ Developemnt files for smb4k.
 
 %prep
 %setup -q -n %name-%version
-#%patch0 -p0
+%patch1 -p1
 
 cd po/pt
 mv pt.po %name.po
