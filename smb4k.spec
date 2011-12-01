@@ -84,4 +84,4 @@ rm -Rf %{buildroot}
 %find_lang %name --with-html
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
