@@ -1,21 +1,17 @@
+%define major 4
+%define libname %mklibname smb4kcore %major
+
 Name:		smb4k
-Version:	0.10.12
+Version:	1.0.3
 Release:	1
 Summary:	A KDE SMB share browser
-Source:		http://downloads.sourceforge.net/project/smb4k/Smb4K%20%28stable%20releases%29/0.10.12/%{name}-%{version}.tar.bz2
-Patch1:		smb4k-0.10.10-sudo.patch
+Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
 Group:		Networking/Other
-Url:		http://sourceforge.net/projects/smb4k
-Requires:	samba-client
-Requires:	kdebase4-runtime
+Url:		http://smb4k.sourceforge.net
 BuildRequires:  kdelibs4-devel
-Obsoletes:	%mklibname %name 0
-# fwang: I remove libname in 0.9.0-1, because:
-# 1) libname is only used by the application
-# 2) the application is mainly an end user application rather than
-#    a development library
-Obsoletes:	%mklibname %name 1
+Requires:	samba-client
+Requires:	%libname = %version
 Obsoletes:	%{mklibname smb4kdialogs 2} < %version-%release
 Conflicts:	%name-devel < 0.10.0-rc
 
@@ -23,64 +19,52 @@ Conflicts:	%name-devel < 0.10.0-rc
 An SMB network and share browser for KDE 4 or later.
 
 %files -f %{name}.lang
-%defattr(-,root,root)
-%{_kde_bindir}/*
+%_kde_sysconfdir/dbus-1/system.d/de.berlios.smb4k.mounthelper.conf
+%{_kde_bindir}/smb4k*
 %_kde_datadir/apps/kconf_update/*
+%_kde_datadir/dbus-1/system-services/de.berlios.smb4k.mounthelper.service
+%_kde_datadir/polkit-1/actions/de.berlios.smb4k.mounthelper.policy
 %{_kde_libdir}/kde4/*.so
-%{_kde_libdir}/libsmb4kdialogs.so
-%{_kde_datadir}/applications/kde4/smb4k.desktop
-%dir %{_kde_datadir}/apps/smb4k
-%{_kde_datadir}/apps/*/*.rc
+%{_kde_libdir}/libsmb4ktooltips.so
+%{_kde_libdir}/kde4/libexec/mounthelper
+%{_kde_applicationsdir}/smb4k.desktop
+%{_kde_appsdir}/smb4k/
 %{_kde_datadir}/config.kcfg/smb4k.kcfg
 %{_kde_iconsdir}/*/*/*/*
 
 #------------------------------------------------	
+%package -n %libname
+Summary:	SMB4K core library
+Group:		System/Libraries
 
-%define smb4kcore_major 3
-%define libsmb4kcore %mklibname smb4kcore %smb4kcore_major
+%description -n %libname
+Library for %{name}.
 
-%package -n %libsmb4kcore
-Summary: SMB4K core library
-Group: System/Libraries
-
-%description -n %libsmb4kcore
-SMB4K core library.
-
-%files -n %libsmb4kcore
-%defattr(-,root,root)
-%_kde_libdir/libsmb4kcore.so.%{smb4kcore_major}*
+%files -n %libname
+%_kde_libdir/libsmb4kcore.so.%{major}*
 
 #------------------------------------------------
 %package devel
-Summary: Developemnt files for smb4k
-Group: Development/KDE and Qt
-Requires: %libsmb4kcore = %version-%release
+Summary:	SMB4K development files
+Group:		Development/KDE and Qt
+Requires:	%libname = %version
 
 %description devel
-Developemnt files for smb4k.
+Development files for applications that need %{name}.
 
 %files devel
-%defattr(-,root,root)
 %_kde_libdir/libsmb4kcore.so
 
+
 #------------------------------------------------
-
 %prep
-%setup -q -n %name-%version
-%patch1 -p1
-
-cd po/pt
-mv pt.po %name.po
+%setup -q
 
 %build
 %cmake_kde4
 %make
 
 %install
-rm -Rf %{buildroot}
 %makeinstall_std -C build
 
 %find_lang %name --with-html
-
-%clean
-rm -rf %{buildroot}
