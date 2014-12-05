@@ -3,7 +3,7 @@
 
 Name:		smb4k
 Version:	1.0.5
-Release:	7
+Release:	8
 Summary:	A KDE SMB share browser
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.bz2
 License:	GPLv2+
