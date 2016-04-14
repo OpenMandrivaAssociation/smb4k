@@ -2,10 +2,10 @@
 %define libname %mklibname smb4kcore %major
 
 Name:		smb4k
-Version:	1.0.5
-Release:	2
+Version:	1.2.1
+Release:	0.1
 Summary:	A KDE SMB share browser
-Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.sourceforge.net
@@ -19,18 +19,21 @@ Conflicts:	%name-devel < 0.10.0-rc
 An SMB network and share browser for KDE 4 or later.
 
 %files -f %{name}.lang
-%_kde_sysconfdir/dbus-1/system.d/de.berlios.smb4k.mounthelper.conf
+%_kde_sysconfdir/dbus-1/system.d/net.sourceforge.smb4k.mounthelper.conf
 %{_kde_bindir}/smb4k*
 %_kde_datadir/apps/kconf_update/*
-%_kde_datadir/dbus-1/system-services/de.berlios.smb4k.mounthelper.service
-%_kde_datadir/polkit-1/actions/de.berlios.smb4k.mounthelper.policy
+%_kde_datadir/dbus-1/system-services/net.sourceforge.smb4k.mounthelper.service
+%_kde_datadir/polkit-1/actions/net.sourceforge.smb4k.mounthelper.policy
 %{_kde_libdir}/kde4/*.so
 %{_kde_libdir}/libsmb4ktooltips.so
 %{_kde_libdir}/kde4/libexec/mounthelper
 %{_kde_applicationsdir}/smb4k.desktop
+%{_kde_services}/plasma-applet-smb4k-qml.desktop
 %{_kde_appsdir}/smb4k/
+%{_kde_appsdir}/plasma/plasmoids/smb4k-qml/
 %{_kde_datadir}/config.kcfg/smb4k.kcfg
 %{_kde_iconsdir}/*/*/*/*
+%{_datadir}/appdata/smb4k.appdata.xml
 
 #------------------------------------------------	
 %package -n %libname
@@ -67,4 +70,5 @@ Development files for applications that need %{name}.
 %install
 %makeinstall_std -C build
 
-%find_lang %name --with-html
+
+%find_lang %name --with-html --all-name
