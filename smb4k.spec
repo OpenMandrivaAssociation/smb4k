@@ -1,15 +1,46 @@
-%define major 4
+%define major 5
 %define libname %mklibname smb4kcore %major
 
 Name:		smb4k
-Version:	1.2.1
+Version:	1.9.80
 Release:	1
 Summary:	A KDE SMB share browser
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://smb4k.sourceforge.net
-BuildRequires:  kdelibs4-devel
+BuildRequires:	cmake(ECM)
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Widgets)
+BuildRequires:	cmake(Qt5Qml)
+BuildRequires:	cmake(Qt5Test)
+BuildRequires:	cmake(Qt5Network)
+BuildRequires:	cmake(Qt5PrintSupport)
+
+# KF5 modules
+BuildRequires:	cmake(KF5Config)
+BuildRequires:	cmake(KF5Auth)
+BuildRequires:	cmake(KF5DocTools)
+BuildRequires:	cmake(KF5IconThemes)
+BuildRequires:	cmake(KF5WidgetsAddons)
+BuildRequires:	cmake(KF5I18n)
+BuildRequires:	cmake(KF5Completion)
+BuildRequires:	cmake(KF5CoreAddons)
+BuildRequires:	cmake(KF5Solid)
+BuildRequires:	cmake(KF5KIO)
+BuildRequires:	cmake(KF5Notifications)
+BuildRequires:	cmake(KF5XmlGui)
+BuildRequires:	cmake(KF5JobWidgets)
+BuildRequires:	cmake(KF5Wallet)
+BuildRequires:	cmake(KF5DBusAddons)
+BuildRequires:	cmake(KF5Parts)
+BuildRequires:	cmake(KF5ConfigWidgets)
+BuildRequires:	cmake(KF5Notifications)
+BuildRequires:	cmake(KF5WindowSystem)
+BuildRequires:	cmake(KF5Plasma)
+
+
 Requires:	samba-client
 Requires:	%libname = %version
 Obsoletes:	%{mklibname smb4kdialogs 2} < %version-%release
@@ -19,21 +50,19 @@ Conflicts:	%name-devel < 0.10.0-rc
 An SMB network and share browser for KDE 4 or later.
 
 %files -f %{name}.lang
-%_kde_sysconfdir/dbus-1/system.d/net.sourceforge.smb4k.mounthelper.conf
+%_kde5_sysconfdir/dbus-1/system.d/org.kde.smb4k.mounthelper.conf
 %{_kde_bindir}/smb4k*
-%_kde_datadir/apps/kconf_update/*
-%_kde_datadir/dbus-1/system-services/net.sourceforge.smb4k.mounthelper.service
-%_kde_datadir/polkit-1/actions/net.sourceforge.smb4k.mounthelper.policy
-%{_kde_libdir}/kde4/*.so
-%{_kde_libdir}/libsmb4ktooltips.so
-%{_kde_libdir}/kde4/libexec/mounthelper
-%{_kde_applicationsdir}/smb4k.desktop
-%{_kde_services}/plasma-applet-smb4k-qml.desktop
-%{_kde_appsdir}/smb4k/
-%{_kde_appsdir}/plasma/plasmoids/smb4k-qml/
-%{_kde_datadir}/config.kcfg/smb4k.kcfg
-%{_kde_iconsdir}/*/*/*/*
-%{_datadir}/appdata/smb4k.appdata.xml
+%_kde5_datadir/kconf_update/*
+%_kde5_datadir/dbus-1/system-services/org.kde.smb4k.mounthelper.service
+%_kde5_datadir/polkit-1/actions/org.kde.smb4k.mounthelper.policy
+%{_kde5_libdir}/qt5/plugins/*.so
+%{_kde5_libdir}/libexec/kauth/mounthelper
+%{_kde5_applicationsdir}/org.kde.smb4k.desktop
+%{_kde5_datadir}/config.kcfg/smb4k.kcfg
+%{_kde5_iconsdir}/*/*/*/*
+%{_datadir}/metainfo/org.kde.smb4k.appdata.xml
+%{_datadir}/kxmlgui5/smb4k
+%{_datadir}/knotifications5/smb4k.notifyrc
 
 #------------------------------------------------	
 %package -n %libname
@@ -44,7 +73,7 @@ Group:		System/Libraries
 Library for %{name}.
 
 %files -n %libname
-%_kde_libdir/libsmb4kcore.so.%{major}*
+%_kde5_libdir/libsmb4kcore.so.%{major}*
 
 #------------------------------------------------
 %package devel
@@ -56,7 +85,7 @@ Requires:	%libname = %version
 Development files for applications that need %{name}.
 
 %files devel
-%_kde_libdir/libsmb4kcore.so
+%_kde5_libdir/libsmb4kcore.so
 
 
 #------------------------------------------------
@@ -64,11 +93,11 @@ Development files for applications that need %{name}.
 %setup -q
 
 %build
-%cmake_kde4
-%make
+%cmake_kde5
+%ninja
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 
 
 %find_lang %name --with-html --all-name
