@@ -51,7 +51,7 @@ An SMB network and share browser for KDE 4 or later.
 
 %files -f %{name}.lang
 %_kde5_sysconfdir/dbus-1/system.d/org.kde.smb4k.mounthelper.conf
-%{_kde_bindir}/smb4k*
+%{_kde5_bindir}/smb4k*
 %_kde5_datadir/kconf_update/*
 %_kde5_datadir/dbus-1/system-services/org.kde.smb4k.mounthelper.service
 %_kde5_datadir/polkit-1/actions/org.kde.smb4k.mounthelper.policy
