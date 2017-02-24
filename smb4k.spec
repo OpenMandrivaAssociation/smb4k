@@ -2,7 +2,7 @@
 %define libname %mklibname smb4kcore %major
 
 Name:		smb4k
-Version:	1.9.80
+Version:	1.9.90
 Release:	1
 Summary:	A KDE SMB share browser
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
