@@ -2,7 +2,7 @@
 %define libname %mklibname smb4kcore %major
 
 Name:		smb4k
-Version:	2.0.2
+Version:	2.1.1
 Release:	1
 Summary:	A KDE SMB share browser
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
@@ -64,6 +64,10 @@ An SMB network and share browser for KDE 4 or later.
 %{_datadir}/metainfo/org.kde.smb4k.appdata.xml
 %{_datadir}/kxmlgui5/smb4k
 %{_datadir}/knotifications5/smb4k.notifyrc
+%{_datadir}/plasma/plasmoids/org.kde.smb4kqml
+%{_datadir}/kservices5/plasma-applet-org.kde.smb4kqml.desktop
+%{_libdir}/qt5/qml/org/kde/smb4k
+%{_datadir}/metainfo/org.kde.smb4kqml.appdata.xml
 
 #------------------------------------------------	
 %package -n %libname

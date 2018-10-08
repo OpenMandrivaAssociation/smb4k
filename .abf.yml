@@ -1,4 +1,5 @@
 removed_sources:
   smb4k-2.0.0.tar.xz: 3c8ae997698c0c530b9ad775c81b32d541f87185
-sources:
   smb4k-2.0.2.tar.xz: 6bb120e03a540a92d46b417ecf55f47f5d9db022
+sources:
+  smb4k-2.1.1.tar.xz: 81996acb60c3f99e4f962557e66637cf44d8fd9c
