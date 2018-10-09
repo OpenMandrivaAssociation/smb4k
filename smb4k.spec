@@ -40,7 +40,7 @@ BuildRequires:	cmake(KF5ConfigWidgets)
 BuildRequires:	cmake(KF5Notifications)
 BuildRequires:	cmake(KF5WindowSystem)
 BuildRequires:	cmake(KF5Plasma)
-
+BuildRequires:	cmake(KF5Crash)
 
 Requires:	samba-client
 Requires:	%libname = %version
