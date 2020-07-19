@@ -1,9 +1,9 @@
-%define major 5
+%define major 6
 %define libname %mklibname smb4kcore %major
 
 Name:		smb4k
-Version:	2.1.1
-Release:	2
+Version:	3.0.70
+Release:	1
 Summary:	A KDE SMB share browser
 Source0:	http://downloads.sourceforge.net/smb4k/%{name}-%{version}.tar.xz
 License:	GPLv2+
@@ -27,6 +27,7 @@ BuildRequires:	cmake(KF5WidgetsAddons)
 BuildRequires:	cmake(KF5I18n)
 BuildRequires:	cmake(KF5Completion)
 BuildRequires:	cmake(KF5CoreAddons)
+BuildRequires:	cmake(KF5DNSSD)
 BuildRequires:	cmake(KF5Solid)
 BuildRequires:	cmake(KF5Sonnet)
 BuildRequires:	cmake(KF5KIO)
@@ -41,6 +42,7 @@ BuildRequires:	cmake(KF5Notifications)
 BuildRequires:	cmake(KF5WindowSystem)
 BuildRequires:	cmake(KF5Plasma)
 BuildRequires:	cmake(KF5Crash)
+BuildRequires:	pkgconfig(smbclient)
 
 Requires:	samba-client
 Requires:	%libname = %version
@@ -51,7 +53,6 @@ Conflicts:	%name-devel < 0.10.0-rc
 An SMB network and share browser for KDE 4 or later.
 
 %files -f %{name}.lang
-%_kde5_sysconfdir/dbus-1/system.d/org.kde.smb4k.mounthelper.conf
 %{_kde5_bindir}/smb4k*
 %_kde5_datadir/kconf_update/*
 %_kde5_datadir/dbus-1/system-services/org.kde.smb4k.mounthelper.service
@@ -68,6 +69,7 @@ An SMB network and share browser for KDE 4 or later.
 %{_datadir}/kservices5/plasma-applet-org.kde.smb4kqml.desktop
 %{_libdir}/qt5/qml/org/kde/smb4k
 %{_datadir}/metainfo/org.kde.smb4kqml.appdata.xml
+%{_datadir}/dbus-1/system.d/org.kde.smb4k.mounthelper.conf
 
 #------------------------------------------------	
 %package -n %libname
