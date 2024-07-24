@@ -41,7 +41,7 @@ BuildRequires:	cmake(KF6XmlGui)
 BuildRequires:	cmake(KF6StatusNotifierItem)
 BuildRequires:  cmake(KF6Kirigami)
 
-BuildRequires:	cmake(Plasma) >= 6.1.3
+BuildRequires:	cmake(Plasma)
 BuildRequires:	cmake(KDSoap-qt6)
 BuildRequires:	cmake(KDSoapWSDiscoveryClient)
 BuildRequires:	cmake(Qt6Keychain)
