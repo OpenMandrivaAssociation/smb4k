@@ -16,6 +16,7 @@ BuildRequires:	cmake(Qt6Qml)
 BuildRequires:	cmake(Qt6Test)
 BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6PrintSupport)
+BuildRequires:	cmake(Qt6Keychain)
 
 # KF modules
 BuildRequires:	cmake(KF6Config)
