@@ -7,7 +7,7 @@ Summary:	A KDE SMB share browser
 Source0:	https://invent.kde.org/network/smb4k/-/archive/%{version}/smb4k-%{version}.tar.bz2
 License:	GPLv2+
 Group:		Networking/Other
-Url:		http://smb4k.sourceforge.net
+Url:		https://smb4k.sourceforge.net
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Gui)
