@@ -1,7 +1,7 @@
 %define oldlibname %mklibname smb4kcore 6
 
 Name:		smb4k
-Version:	3.2.90
+Version:	4.0.0
 Release:	1
 Summary:	A KDE SMB share browser
 Source0:	https://invent.kde.org/network/smb4k/-/archive/%{version}/smb4k-%{version}.tar.bz2
