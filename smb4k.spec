@@ -54,18 +54,17 @@ Obsoletes:	%{name}-devel < %{EVRD}
 An SMB network and share browser for KDE 4 or later.
 
 %files -f %{name}.lang
-%{_kde5_bindir}/smb4k*
-%_kde5_datadir/dbus-1/system-services/org.kde.smb4k.mounthelper.service
-%_kde5_datadir/polkit-1/actions/org.kde.smb4k.mounthelper.policy
-%{_kde5_applicationsdir}/org.kde.smb4k.desktop
-%{_kde5_datadir}/config.kcfg/smb4k.kcfg
-%{_kde5_iconsdir}/*/*/*/*
+%{_bindir}/smb4k*
+%{_datadir}/dbus-1/system-services/org.kde.smb4k.mounthelper.service
+%{_datadir}/polkit-1/actions/org.kde.smb4k.mounthelper.policy
+%{_datadir}/applications/org.kde.smb4k.desktop
+%{_datadir}/config.kcfg/smb4k.kcfg
+%{_iconsdir}/*/*/*/*
 %{_datadir}/metainfo/org.kde.smb4k.appdata.xml
 %{_datadir}/knotifications6/smb4k.notifyrc
 %{_datadir}/plasma/plasmoids/org.kde.smb4kqml
-%{_datadir}/metainfo/org.kde.smb4kqml.appdata.xml
 %{_datadir}/dbus-1/system.d/org.kde.smb4k.mounthelper.conf
-%_kde5_libdir/libsmb4kcore.so
+%{_libdir}/libsmb4kcore.so
 %{_libdir}/libexec/kf6/kauth/mounthelper
 %{_libdir}/libsmb4kdialogs.so
 %{_qtdir}/plugins/smb4kconfigdialog.so
